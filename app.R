@@ -130,7 +130,7 @@ ui <- dashboardPage(skin = "purple",
                         menuSubItem(text = "Mapa patrimonio material", tabName = "mapa_material"),
                         menuSubItem(text = "Tabla patrimonio material", tabName = "tabla_material"),
                         menuSubItem(text = "Gráfico patrimonio material", tabName = "grafico_material"),
-                        menuSubItem(text = "Página principal",href = "https://mauguemu.github.io/Recursos_patrimonio_cultural/"),
+                        menuSubItem(text = "Página principal",href = "https://rpubs.com/mauguemu/1050126"),
                         #menuSubItem(text = "Recursos del casco histórico", tabName = "casco_historico"),
                         startExpanded = TRUE
                       )
