@@ -5,9 +5,9 @@ account: mauguemu
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9245220
-bundleId: 7304928
+bundleId: 7326381
 url: https://mauguemu.shinyapps.io/Recursos_patrimonio_material/
-when: 1685942272.98037
-lastSyncTime: 1685942272.98037
+when: 1686343554.46563
+lastSyncTime: 1686343554.46563
 asMultiple: FALSE
 asStatic: FALSE

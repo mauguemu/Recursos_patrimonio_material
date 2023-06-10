@@ -130,7 +130,7 @@ ui <- dashboardPage(skin = "purple",
                         menuSubItem(text = "Mapa patrimonio material", tabName = "mapa_material"),
                         menuSubItem(text = "Tabla patrimonio material", tabName = "tabla_material"),
                         menuSubItem(text = "Gráfico patrimonio material", tabName = "grafico_material"),
-                        menuSubItem(text = "Página principal",href = "https://rpubs.com/mauguemu/1050126"),
+                        menuSubItem(text = "Página principal",href = "https://rpubs.com/mauguemu/1050387"),
                         #menuSubItem(text = "Recursos del casco histórico", tabName = "casco_historico"),
                         startExpanded = TRUE
                       )
@@ -301,78 +301,7 @@ server <- function(input, output, session) {
       )
   })
   
-  output$mapa_1 <- renderLeaflet({
-    # registros <-
-    #   filtrarRegistros()
-    
-    colores <- c('red', 'orange', 'yellow')
-    
-    c_zona <- levels(as.factor(zonas$id_zona))
-    
-    paleta <- colorFactor(palette = colores, domain = c_zona)
-    
-    # Mapa leaflet básico con capas de zonas y recursos patrimoniales 
-    leaflet() %>%
-      addTiles() %>%
-      setView(-83.0232, 9.9952, 15) %>%
-      
-      addProviderTiles(
-        providers$CartoDB.Positron, group = "Mapa base Carto_DB") %>%
-      addProviderTiles(
-        providers$Esri.WorldImagery, group = "Maba base Esri") %>%
-      
-      addPolygons(
-        data = zonas,
-        color = ~paleta(id_zona),
-        smoothFactor = 0.3,
-        fillOpacity = 0.3,
-        popup =  ~nombre,
-        label= ~id_zona,
-        stroke = TRUE,
-        weight = 2.0,
-        group = "Zonas delimitadas"
-      )  %>%
-      
-      addPolygons(
-        data = cuadrantes,
-        color = "black",
-        smoothFactor = 0.3,
-        stroke = TRUE,
-        weight = 1.0,
-        group = "Cuadrantes"
-      ) %>%
-      
-      addCircleMarkers(
-        data = recursos_casco,
-        stroke = F,
-        radius = 4,
-        popup = paste0("<strong>Recurso: </strong>",
-                       recursos_casco$denominacion,
-                       "<br>",
-                       "<strong>Subcategoría: </strong>",
-                       recursos_casco$subcategoria,
-                       "<br>",
-                       "<strong>Estado de conservación: </strong>",
-                       recursos_casco$estado,
-                       "<br>",
-                       "<img src='",recursos_casco$foto,"","'width='200'/>",
-                       "<br>",
-                       "<a href='",recursos_casco$ficha,"", "'>Ficha</a>"),
-        label = ~codigo,
-        fillColor = 'black',
-        fillOpacity = 1,
-        group = "Recursos casco histórico"
-      )%>%
-      addSearchOSM()%>%
-      addResetMapButton()%>%
-      addMouseCoordinates()%>%
-      addLayersControl(
-        baseGroups = c("Mapa base Carto_DB","Mapa base Esri"),
-        overlayGroups = c("Zonas delimitadas","Cuadrantes", "Recursos casco histórico"),
-        options = layersControlOptions(collapsed = T)
-      )
-  })
-  
+
   output$grafico_evaluacion <- renderPlotly({
     registros <- filtrarRegistros()
     
